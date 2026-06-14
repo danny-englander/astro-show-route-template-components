@@ -1,0 +1,26 @@
+{
+  "name": "astro-show-route-templates",
+  "version": "0.1.0",
+  "description": "Dev-only Astro integration that injects 'which .astro file is this?' HTML comments into server-rendered pages and components.",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "astro-integration",
+    "astro-component",
+    "withastro",
+    "astro",
+    "debug",
+    "devtools"
+  ],
+  "peerDependencies": {
+    "astro": ">=4.0.0"
+  },
+  "license": "MIT",
+  "author": "danny-englander"
+}
