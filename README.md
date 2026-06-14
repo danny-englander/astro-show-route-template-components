@@ -1,18 +1,28 @@
-# Astro Show Route and Template Information
+# astro-show-route-templates
 
-A tiny **dev-only** Astro integration that answers a question you hit constantly when working on an unfamiliar Astro site:
+Dev-only Astro integration that injects HTML comments showing **which route template owns each page** and **which `.astro` file produced each element**.
 
-> *"Which `.astro` file actually rendered this route?"*
+## Why
 
-When `astro dev` is running, it injects a single HTML comment into every page's server-rendered output, right after the opening `<html>` tag:
+Two complementary debugging layers:
 
-```html
-<html lang="en"><!-- ASTRO | Route: /blog/hello-world | Template: src/pages/blog/[slug].astro -->
-```
+1. **Route** — one comment per page after `<html>`, visible in View Source:
+   ```html
+   <!-- ASTRO | Route: /blog/foo | Template: src/pages/blog/[slug].astro -->
+   ```
 
-Open **View Page Source** in the browser and search for `ASTRO |`. Dynamic routes resolve to the real template (`[slug].astro`) while the comment still shows the concrete request path.
+2. **Elements** — a comment above each rendered node, visible in the Elements panel:
+   ```html
+   <!-- astro-source: src/components/Footer.astro 12:4 -->
+   <footer>...</footer>
+   ```
 
-There are **zero per-file edits** — you add the integration once and every route is covered.
+Element comments persist after the Audit dev toolbar strips `data-astro-source-*` attributes. Elements stay uncluttered.
+
+## Requirements
+
+- Astro 4+
+- Dev toolbar enabled for element comments (source attributes are only emitted when the dev toolbar is active)
 
 ## Install
 
@@ -20,66 +30,62 @@ There are **zero per-file edits** — you add the integration once and every rou
 npm install -D astro-show-route-templates
 ```
 
+## Usage
+
 ```js
 // astro.config.mjs
 import { defineConfig } from "astro/config";
-import templateDebug from "astro-show-route-templates";
+import showRouteTemplates from "astro-show-route-templates";
 
 export default defineConfig({
-  integrations: [templateDebug()],
+  integrations: [showRouteTemplates()],
 });
 ```
 
-Run `npm run dev`, load any route, and View Source.
+Both route and element comments are enabled by default. No layout changes required.
 
 ## Options
 
 ```js
-templateDebug({
-  prefix: "ASTRO", // text prefix in the comment: "ASTRO | Route: ..."
-  srcDir: "src",   // folder treated as the root of the repo-relative path
+showRouteTemplates({
+  enabled: true,
+  routes: true,
+  elements: true,
+  routePrefix: "ASTRO",
+  elementPrefix: "astro-source",
+  srcDir: "src",
+  includeLoc: true,
+  pathMarkers: ["/src/", "/node_modules/"],
 });
 ```
 
-## How it works
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enabled` | `true` | Turn off without removing the integration |
+| `routes` | `true` | Inject route/template comment after `<html>` |
+| `elements` | `true` | Inject per-element source comments |
+| `routePrefix` | `"ASTRO"` | Prefix in route comments. `prefix` is an alias. |
+| `elementPrefix` | `"astro-source"` | Prefix in element comments |
+| `srcDir` | `"src"` | Root folder for repo-relative route paths |
+| `includeLoc` | `true` | Append `line:col` to element comments |
+| `pathMarkers` | `["/src/", "/node_modules/"]` | Markers used to shorten element file paths |
 
-It never rewrites your `.astro` source, so it can't fight Astro's compiler:
+Disable one layer if you only need the other:
 
-1. **`astro:routes:resolved`** — builds a map of `{ routePattern: templateFile }` from the resolved route table.
-2. **A Vite virtual module** (`virtual:astro-show-route-templates`) exposes that map to the middleware.
-3. **Request-time middleware** — looks up `context.routePattern`, and splices a single-line comment into the HTML response after the opening `<html>` tag.
+```js
+showRouteTemplates({ elements: false }); // route comments only
+showRouteTemplates({ routes: false });   // element comments only
+```
 
-Because registration happens only when `command === "dev"`, the middleware doesn't exist in a production build, and comments never ship to visitors.
+## Local development
 
-## Why single-line comments
-
-An earlier prototype injected a multi-line comment directly into component
-frontmatter. A **multi-line** HTML comment placed inside a compiled Astro
-template expression triggers `Parse failure: Expression expected` from the
-compiler. The response-rewrite approach sidesteps that entirely, and the comment
-is kept single-line so it stays predictable for a `View Source` search.
-
-## Relationship to Astro's built-in `data-astro-source-file`
-
-Recent Astro versions already add `data-astro-source-file` / `data-astro-source-loc`
-attributes to rendered elements in dev mode. That is excellent for the Elements
-panel, but it tags *individual elements*, not page boundaries, and it doesn't
-tell you which **page template** owns a route at a glance. This integration is
-complementary: one clean comment per document keyed to the route.
-
-## Limitations
-
-- **Dev only.** Nothing is emitted in `astro build` output. By design.
-- **HTML responses only.** JSON/other endpoints are skipped (checked via `content-type`).
-- **Page level only.** This marks the page template that owns each route. It does
-  not mark individual shared components (`Header.astro`, etc.). Component-level
-  marking would require per-component opt-in; see the project notes.
-- **Route pattern join.** Matching is by `context.routePattern`. Custom routing
-  set up by other integrations that don't populate a resolved route entrypoint
-  won't be mapped.
-- **View transitions.** With `ClientRouter`, client-side navigation swaps the
-  document without a full reload. Hard-refresh or open the URL directly to
-  verify a specific route's comment.
+```json
+{
+  "devDependencies": {
+    "astro-show-route-templates": "file:./astro-show-route-templates"
+  }
+}
+```
 
 ## License
 

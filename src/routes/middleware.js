@@ -1,5 +1,5 @@
 /**
- * Request-time middleware for astro-show-route-templates.
+ * Request-time middleware for route-level template comments.
  *
  * Reads the route map exposed by the virtual module, looks up the current
  * request's routePattern, and splices a single-line HTML comment in right
@@ -11,7 +11,6 @@
  */
 
 import { defineMiddleware } from "astro:middleware";
-// Provided by the integration's Vite plugin.
 import { routeMap, prefix } from "virtual:astro-show-route-templates";
 
 const HTML_OPEN = /<html\b[^>]*>/i;
@@ -19,7 +18,6 @@ const HTML_OPEN = /<html\b[^>]*>/i;
 export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
 
-  // Only touch HTML responses.
   const type = response.headers.get("content-type") || "";
   if (!type.includes("text/html")) return response;
 
@@ -34,8 +32,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
     ? html.replace(HTML_OPEN, (tag) => `${tag}${comment}`)
     : `${comment}${html}`;
 
-  // Rebuild the response; preserve status and headers (content-length will be
-  // recomputed by the platform since we changed the body).
   const headers = new Headers(response.headers);
   headers.delete("content-length");
 
