@@ -11,7 +11,7 @@
  */
 
 import { defineMiddleware } from "astro:middleware";
-import { routeMap, prefix } from "virtual:astro-show-route-templates";
+import { routeMap, prefix } from "virtual:astro-show-route-components-templates";
 
 const HTML_OPEN = /<html\b[^>]*>/i;
 

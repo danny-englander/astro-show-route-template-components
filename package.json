@@ -1,7 +1,7 @@
 {
-  "name": "astro-show-route-templates",
-  "version": "0.2.0",
-  "description": "Dev-only Astro integration that injects HTML comments showing which route template owns each page and which .astro file produced each element.",
+  "name": "astro-show-route-components-templates",
+  "version": "0.3.0",
+  "description": "Dev-only Astro integration that injects HTML comments showing which route and template own each page and which .astro component produced each node.",
   "type": "module",
   "main": "./src/index.js",
   "exports": {
