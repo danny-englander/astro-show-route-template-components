@@ -25,7 +25,7 @@ const VIRTUAL_ID = "virtual:astro-show-route-template-components";
 const RESOLVED_VIRTUAL_ID = "\0" + VIRTUAL_ID;
 
 /**
- * @typedef {Object} ShowRouteComponentsTemplatesOptions
+ * @typedef {Object} ShowRouteTemplateComponentsOptions
  * @property {boolean} [enabled=true] Whether the integration is active in dev.
  * @property {boolean} [routes=true] Inject a route/template comment after `<html>`.
  * @property {boolean} [components=true] Inject component source comments via client script.
@@ -38,10 +38,10 @@ const RESOLVED_VIRTUAL_ID = "\0" + VIRTUAL_ID;
  */
 
 /**
- * @param {ShowRouteComponentsTemplatesOptions} [userOptions]
+ * @param {ShowRouteTemplateComponentsOptions} [userOptions]
  * @returns {import("astro").AstroIntegration}
  */
-export default function showRouteComponentsTemplates(userOptions = {}) {
+export default function showRouteTemplateComponents(userOptions = {}) {
   const options = {
     enabled: true,
     routes: true,
@@ -117,7 +117,7 @@ export default function showRouteComponentsTemplates(userOptions = {}) {
 
           injectScript(
             "head-inline",
-            `window.__ASTRO_SHOW_ROUTE_COMPONENTS_TEMPLATES__=${config};${clientScript}`,
+            `window.__ASTRO_SHOW_ROUTE_TEMPLATE_COMPONENTS__=${config};${clientScript}`,
           );
 
           logger.info("Injecting component source comments (dev only).");

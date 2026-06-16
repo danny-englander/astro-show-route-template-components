@@ -2,7 +2,7 @@
  * Dev-only client script: capture Astro source attributes and insert HTML comments.
  *
  * Injected by astro-show-route-template-components during `astro dev` only.
- * Config is set on window.__ASTRO_SHOW_ROUTE_COMPONENTS_TEMPLATES__ by the integration.
+ * Config is set on window.__ASTRO_SHOW_ROUTE_TEMPLATE_COMPONENTS__ by the integration.
  */
 (function preserveAstroSource() {
   const config = Object.assign(
@@ -11,7 +11,7 @@
       prefix: "astro-source",
       includeLoc: true,
     },
-    window.__ASTRO_SHOW_ROUTE_COMPONENTS_TEMPLATES__ || {},
+    window.__ASTRO_SHOW_ROUTE_TEMPLATE_COMPONENTS__ || {},
   );
 
   /** @type {WeakMap<Element, { file: string; loc: string }>} */

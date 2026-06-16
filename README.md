@@ -37,10 +37,10 @@ npm install -D astro-show-route-template-components
 ```js
 // astro.config.mjs
 import { defineConfig } from "astro/config";
-import showRouteComponentsTemplates from "astro-show-route-template-components";
+import showRouteTemplateComponents from "astro-show-route-template-components";
 
 export default defineConfig({
-  integrations: [showRouteComponentsTemplates()],
+  integrations: [showRouteTemplateComponents()],
 });
 ```
 
@@ -49,7 +49,7 @@ Both route and component comments are enabled by default. No layout changes requ
 ## Options
 
 ```js
-showRouteComponentsTemplates({
+showRouteTemplateComponents({
   enabled: true,
   routes: true,
   components: true,
@@ -75,8 +75,8 @@ showRouteComponentsTemplates({
 Disable one layer if you only need the other:
 
 ```js
-showRouteComponentsTemplates({ components: false }); // route comments only
-showRouteComponentsTemplates({ routes: false });     // component comments only
+showRouteTemplateComponents({ components: false }); // route comments only
+showRouteTemplateComponents({ routes: false });     // component comments only
 ```
 
 ## Local development
