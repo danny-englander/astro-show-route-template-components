@@ -1,4 +1,4 @@
-# Astro Show Route, Components, and Templates
+# Astro Show Route, Template, and Components
 
 I was inspired to create this project as I have a Drupal background and I really like Twig template debug output. This project pays homage to that and I find this really useful.
 
@@ -29,7 +29,7 @@ Component comments persist after the Audit dev toolbar strips `data-astro-source
 ## Install
 
 ```bash
-npm install -D astro-show-route-components-templates
+npm install -D astro-show-route-template-components
 ```
 
 ## Usage
@@ -37,7 +37,7 @@ npm install -D astro-show-route-components-templates
 ```js
 // astro.config.mjs
 import { defineConfig } from "astro/config";
-import showRouteComponentsTemplates from "astro-show-route-components-templates";
+import showRouteComponentsTemplates from "astro-show-route-template-components";
 
 export default defineConfig({
   integrations: [showRouteComponentsTemplates()],
@@ -84,7 +84,7 @@ showRouteComponentsTemplates({ routes: false });     // component comments only
 ```json
 {
   "devDependencies": {
-    "astro-show-route-components-templates": "file:./astro-show-route-components-templates"
+    "astro-show-route-template-components": "file:./astro-show-route-template-components"
   }
 }
 ```

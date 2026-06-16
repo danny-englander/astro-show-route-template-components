@@ -1,7 +1,7 @@
 /**
  * Dev-only client script: capture Astro source attributes and insert HTML comments.
  *
- * Injected by astro-show-route-components-templates during `astro dev` only.
+ * Injected by astro-show-route-template-components during `astro dev` only.
  * Config is set on window.__ASTRO_SHOW_ROUTE_COMPONENTS_TEMPLATES__ by the integration.
  */
 (function preserveAstroSource() {

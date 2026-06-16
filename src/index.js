@@ -1,5 +1,5 @@
 /**
- * astro-show-route-components-templates
+ * astro-show-route-template-components
  *
  * Dev-only Astro integration that injects HTML comments for source debugging:
  *
@@ -21,7 +21,7 @@ import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { toRepoPath } from "./paths.js";
 
-const VIRTUAL_ID = "virtual:astro-show-route-components-templates";
+const VIRTUAL_ID = "virtual:astro-show-route-template-components";
 const RESOLVED_VIRTUAL_ID = "\0" + VIRTUAL_ID;
 
 /**
@@ -59,7 +59,7 @@ export default function showRouteComponentsTemplates(userOptions = {}) {
   let routeMap = {};
 
   const virtualPlugin = {
-    name: "astro-show-route-components-templates:virtual",
+    name: "astro-show-route-template-components:virtual",
     resolveId(id) {
       if (id === VIRTUAL_ID) return RESOLVED_VIRTUAL_ID;
       return null;
@@ -74,7 +74,7 @@ export default function showRouteComponentsTemplates(userOptions = {}) {
   };
 
   return {
-    name: "astro-show-route-components-templates",
+    name: "astro-show-route-template-components",
     hooks: {
       "astro:config:setup": ({
         command,
