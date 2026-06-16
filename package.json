@@ -1,6 +1,6 @@
 {
   "name": "astro-show-route-template-components",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Dev-only Astro integration that injects HTML comments showing which route and template own each page and which .astro component produced each node.",
   "type": "module",
   "main": "./src/index.js",
@@ -8,7 +8,8 @@
     ".": "./src/index.js"
   },
   "files": [
-    "src"
+    "src",
+    "screenshot.png"
   ],
   "keywords": [
     "astro-integration",
@@ -22,5 +23,9 @@
     "astro": ">=4.0.0"
   },
   "license": "MIT",
-  "author": "danny-englander"
+  "author": "danny-englander",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danny-englander/astro-show-route-templates.git"
+  }
 }

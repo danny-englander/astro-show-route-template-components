@@ -2,7 +2,9 @@
 
 I was inspired to create this project as I have a Drupal background and I really like Twig template debug output. This project pays homage to that and I find this really useful.
 
-This is a dev-only Astro integration that injects HTML comments showing **which route and template own each page** and **which `.astro` component produced each node**.
+This is a dev-only Astro integration that injects HTML comments showing which route, template, and astro components are being used on any given page.
+
+![DevTools showing astro-source comments](screenshot.png)
 
 ## Why
 
