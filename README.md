@@ -1,6 +1,6 @@
 # Astro Show Route, Template, and Components
 
-[![CI](https://github.com/danny-englander/astro-show-route-templates/actions/workflows/ci.yml/badge.svg)](https://github.com/danny-englander/astro-show-route-templates/actions/workflows/ci.yml)
+[![CI](https://github.com/danny-englander/astro-show-route-template-components/actions/workflows/ci.yml/badge.svg)](https://github.com/danny-englander/astro-show-route-template-components/actions/workflows/ci.yml)
 
 I was inspired to create this project as I have a Drupal background and I really like Twig template debug output. This project pays homage to that and I find this really useful.
 

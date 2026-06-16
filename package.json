@@ -19,6 +19,9 @@
     "debug",
     "devtools"
   ],
+  "scripts": {
+    "test": "node --test"
+  },
   "peerDependencies": {
     "astro": ">=4.0.0"
   },
