@@ -1,10 +1,14 @@
 # Astro Show Route, Template, and Components
 
-[![CI](https://img.shields.io/github/actions/workflow/status/danny-englander/astro-show-route-template-components/ci.yml?branch=main&label=CI)](https://github.com/danny-englander/astro-show-route-template-components/actions/workflows/ci.yml)
+[![CI](https://github.com/danny-englander/astro-show-route-template-components/actions/workflows/ci.yml/badge.svg)](https://github.com/danny-englander/astro-show-route-template-components/actions/workflows/ci.yml)
 
 I was inspired to create this project as I have a Drupal background and I really like Twig template debug output. This project pays homage to that and I find this really useful.
 
 This is a dev-only Astro integration that injects HTML comments showing which route, template, and astro components are being used on any given page.
+
+## NPM Package
+[https://www.npmjs.com/package/astro-show-route-template-components](https://www.npmjs.com/package/astro-show-route-template-components)
+
 
 ![DevTools showing astro-source comments](screenshot.png)
 
